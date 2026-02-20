@@ -63,13 +63,12 @@ body { font-family: Arial, sans-serif; background:var(--bg); color:var(--text); 
 .career-logo p { color:rgba(255,255,255,0.9); font-size:0.9rem; margin-top:6px; font-weight: bold; }
 .gold-line { width:48px; height:4px; background:var(--gold); margin:14px auto; border-radius:2px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 .career-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; max-width:860px; width:100%; position:relative; z-index:1; }
-.career-card { background:rgba(255,255,255,0.2); border:1.5px solid rgba(255,255,255,0.3); border-radius:16px; padding:28px 24px; cursor:pointer; transition:all 0.25s; }
+.career-card { background:rgba(255,255,255,0.2); border:1.5px solid rgba(255,255,255,0.3); border-radius:16px; padding:28px 24px; cursor:pointer; transition:all 0.25s; display:flex; flex-direction:column; align-items:center; text-align:center; }
 .career-card:hover { background:rgba(255,255,255,0.4); border-color:var(--gold); transform:translateY(-4px); }
 .career-card.disabled { opacity:0.5; cursor:not-allowed; }
 .career-card.disabled:hover { transform:none; border-color:rgba(255,255,255,0.3); background:rgba(255,255,255,0.2); }
-.career-icon { font-size:2rem; margin-bottom:12px; }
+.career-icon { font-size:2.5rem; margin-bottom:12px; }
 .career-card h3 { font-family: Arial, sans-serif; color:white; font-size:1.1rem; margin-bottom:6px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
-.career-card p { color:rgba(255,255,255,0.8); font-size:0.78rem; font-weight:bold; }
 .badge-soon { display:inline-block; background:var(--gold); color:var(--text); font-size:0.65rem; font-weight:bold; padding:3px 10px; border-radius:20px; margin-top:8px; text-transform:uppercase; }
 
 /* CALC SCREEN */
@@ -205,25 +204,26 @@ body { font-family: Arial, sans-serif; background:var(--bg); color:var(--text); 
   </div>
   <div class="career-grid">
     <div class="career-card" onclick="selectCareer('bio')">
-      <div class="career-icon">🧬</div>
-      <h3>Biología</h3>
-      <p>Malla antigua (hasta admisión 2021)</p>
+      <div class="career-icon">🌳</div>
+      <h3>Biología Malla Antigua</h3>
     </div>
     <div class="career-card" onclick="selectCareer('bio_new')">
-      <div class="career-icon">🧬</div>
-      <h3>Biología</h3>
-      <p>Malla nueva (admisión 2022+)</p>
+      <div class="career-icon">🍃</div>
+      <h3>Biología Malla Nueva</h3>
     </div>
     <div class="career-card disabled">
-      <div class="career-icon">🌊</div>
-      <h3>Biología Marina</h3>
-      <p>Malla antigua y nueva</p>
+      <div class="career-icon">🪼</div>
+      <h3>Biología Marina Malla Antigua</h3>
+      <span class="badge-soon">Próximamente</span>
+    </div>
+    <div class="career-card disabled">
+      <div class="career-icon">🐡</div>
+      <h3>Biología Marina Malla Nueva</h3>
       <span class="badge-soon">Próximamente</span>
     </div>
     <div class="career-card" onclick="selectCareer('bq')">
-      <div class="career-icon">⚗️</div>
+      <div class="career-icon">🧬</div>
       <h3>Bioquímica</h3>
-      <p>Malla completa</p>
     </div>
   </div>
 </div>
@@ -489,14 +489,6 @@ const MALLAS = {
       { num: 8, label: '8vo Semestre', cursos: [
         { code: 'BIO416C', name: 'Seminario de Investigación I', crd: 25 }
       ]}
-    ]},
-    { year: 'Quinto Año — Título Profesional', sems: [
-      { num: 9, label: '9no Semestre', note: 'Opción A, B o C (Seminario II, CAE, o Práctica Inmersiva)', cursos: [
-        { code: 'BIO4XX', name: 'Actividad de Titulación (Opción)', crd: 30 }
-      ]},
-      { num: 10, label: '10mo Semestre', cursos: [
-        { code: 'BIO480C', name: 'Memoria Profesional / Investigación', crd: 50 }
-      ]}
     ]}
   ]
 };
@@ -524,15 +516,15 @@ function selectCareer(id) {
   
   const headerTitle = document.getElementById('calc-header-title');
   if (id === 'bio') {
-    headerTitle.textContent = 'Biología — Malla Antigua (hasta 2021)';
+    headerTitle.textContent = 'Biología Malla Antigua';
     ofgReq = 70;
     oprReq = 20;
   } else if (id === 'bq') {
-    headerTitle.textContent = 'Bioquímica — Malla Completa';
+    headerTitle.textContent = 'Bioquímica';
     ofgReq = 60;
     oprReq = 15;
   } else if (id === 'bio_new') {
-    headerTitle.textContent = 'Biología — Malla Nueva (Admisión 2022+)';
+    headerTitle.textContent = 'Biología Malla Nueva';
     ofgReq = 60; 
     oprReq = 60;
   }
