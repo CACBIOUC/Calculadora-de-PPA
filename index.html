@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora PPA — CABIOUC</title>
+<title>Calculadora PPA — Ciencias Biológicas</title>
 <link rel="icon" type="image/png" href="https://i.ibb.co/JjN0BKLC/Whats-App-Image-2025-12-10-at-21-40-35.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,67 +11,76 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <style>
 /* ════════════════════════════════════════
-   SISTEMA DE DISEÑO PREMIUM 2025
+   SISTEMA DE DISEÑO SaaS 2025
    ════════════════════════════════════════ */
 :root {
-  /* Brand Colors */
-  --uc: #61A3A6; /* Un tono un poco más desaturado y elegante del original */
-  --uc-dark: #0033A0;
-  --gold: #FFB800;
+  /* Brand Gradients & Accents (Indigo/Violet) */
+  --primary: #6366F1;
+  --primary-hover: #4F46E5;
+  --primary-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  --gold: #F59E0B;
   
-  /* Light Theme */
-  --bg: #F7F7F9;
+  /* Light Theme Colors */
+  --bg: #F8F9FA;
   --surface: #FFFFFF;
-  --text: #1C1C21;
-  --muted: #8E8E9E;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
   
-  /* Status Colors (Soft variants) */
-  --green: #34C759;
-  --green-bg: #E8F7EC;
-  --red: #FF3B30;
-  --red-bg: #FFECEB;
-  --orange: #FF9500;
-  --orange-bg: #FFF4E5;
+  /* Status Colors (Soft Pastel Variants) */
+  --success: #10B981;
+  --success-bg: rgba(16, 185, 129, 0.1);
+  --danger: #EF4444;
+  --danger-bg: rgba(239, 68, 68, 0.1);
+  --warning: #F59E0B;
+  --warning-bg: rgba(245, 158, 11, 0.1);
   
   /* UI Elements */
-  --row-bg: #FDFDFE;
-  --input-bg: #F2F2F7;
-  --border-col: #E5E5EA;
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.06);
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.4);
+  --row-bg: #F8FAFC;
+  --input-bg: #F1F5F9;
+  --border-subtle: #E2E8F0;
+  
+  /* Shadows & Glass */
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.06);
+  --shadow-glow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  
+  /* Animation Curves */
+  --ease-spring: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0A0A0C;
-    --surface: #151518;
-    --text: #F2F2F7;
-    --muted: #8E8E9E;
+    --bg: #0B0F19;
+    --surface: #111827;
+    --text-main: #F8FAFC;
+    --text-muted: #94A3B8;
     
-    --green: #30D158;
-    --green-bg: rgba(48, 209, 88, 0.1);
-    --red: #FF453A;
-    --red-bg: rgba(255, 69, 58, 0.1);
-    --orange: #FF9F0A;
-    --orange-bg: rgba(255, 159, 10, 0.1);
+    --success: #34D399;
+    --success-bg: rgba(52, 211, 153, 0.1);
+    --danger: #F87171;
+    --danger-bg: rgba(248, 113, 113, 0.1);
+    --warning: #FBBF24;
+    --warning-bg: rgba(251, 191, 36, 0.1);
     
-    --row-bg: #1C1C20;
-    --input-bg: #2C2C30;
-    --border-col: #2C2C30;
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.4);
-    --glass-bg: rgba(21, 21, 24, 0.85);
+    --row-bg: #1F2937;
+    --input-bg: #0F172A;
+    --border-subtle: #334155;
+    
+    --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    --glass-bg: rgba(17, 24, 39, 0.75);
     --glass-border: rgba(255, 255, 255, 0.05);
   }
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 body { 
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+  font-family: 'Inter', system-ui, sans-serif; 
   background: var(--bg); 
-  color: var(--text); 
+  color: var(--text-main); 
   min-height: 100vh; 
   transition: background 0.4s ease, color 0.4s ease;
   -webkit-font-smoothing: antialiased;
@@ -83,228 +92,241 @@ body {
 #screen-career {
   min-height: 100vh; display: flex; flex-direction: column;
   align-items: center; justify-content: center; padding: 40px 20px;
-  background: radial-gradient(circle at top right, var(--uc), #3a7c7f);
+  background: var(--bg);
+  background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
   position: relative; overflow: hidden;
 }
 .career-logo { 
-  text-align: center; margin-bottom: 56px; position: relative; z-index: 1; color: white;
-  animation: fadeDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-align: center; margin-bottom: 64px; position: relative; z-index: 1;
+  animation: fadeDown 0.8s var(--ease-spring);
 }
 .main-logo { 
-  width: 100px; height: 100px; margin-bottom: 20px; border-radius: 50%; 
-  box-shadow: 0 16px 40px rgba(0,0,0,0.2); background: white; padding: 4px; 
+  width: 80px; height: 80px; margin-bottom: 24px; border-radius: 20px; 
+  box-shadow: var(--shadow-md); background: var(--surface); padding: 4px; 
 }
-.career-logo h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px;}
-.career-logo p { color: rgba(255,255,255,0.85); font-size: 0.95rem; font-weight: 500; }
+.career-logo h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; color: var(--text-main); }
+.career-logo p { color: var(--text-muted); font-size: 1rem; font-weight: 500; }
 
 .career-grid { 
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-  gap: 20px; max-width: 900px; width: 100%; position: relative; z-index: 1;
-  animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s backwards;
+  gap: 24px; max-width: 900px; width: 100%; position: relative; z-index: 1;
+  animation: fadeUp 0.8s var(--ease-spring) 0.1s backwards;
 }
 .career-card { 
-  background: rgba(255,255,255,0.1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.2); border-radius: 24px; 
+  background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border); border-radius: 24px; 
   padding: 32px 24px; cursor: pointer; 
-  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  display: flex; flex-direction: column; align-items: center; text-align: center; 
+  transition: all 0.4s var(--ease-spring);
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  box-shadow: var(--shadow-sm);
 }
 .career-card:hover { 
-  background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); 
-  transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+  transform: translateY(-6px); box-shadow: var(--shadow-md); 
+  border-color: rgba(99, 102, 241, 0.3);
 }
-.career-icon { font-size: 3rem; margin-bottom: 16px; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1)); }
-.career-card h3 { color: white; font-size: 1.1rem; font-weight: 600; line-height: 1.4; }
+.career-icon { font-size: 2.5rem; margin-bottom: 16px; transition: transform 0.4s var(--ease-spring); }
+.career-card:hover .career-icon { transform: scale(1.1); }
+.career-card h3 { color: var(--text-main); font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
 
 /* ════════════════════════════════════════
    CALC SCREEN & STATS BAR
    ════════════════════════════════════════ */
-#screen-calc { display: none; min-height: 100vh; padding-bottom: 60px; }
+#screen-calc { display: none; min-height: 100vh; padding-bottom: 80px; }
 
-/* Sticky Glassmorphism Header */
-.stats-bar {
-  position: sticky; top: 0; z-index: 100; 
-  background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--glass-border); padding: 16px 32px;
-  display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+.stats-bar-wrapper {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-sm);
 }
 
+.stats-bar {
+  padding: 16px 32px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+  max-width: 1000px; margin: 0 auto;
+}
+
 .back-btn { 
-  background: var(--input-bg); border: none; color: var(--text); 
-  width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; 
+  background: var(--input-bg); border: 1px solid var(--border-subtle); color: var(--text-muted); 
+  width: 40px; height: 40px; border-radius: 12px; cursor: pointer; font-size: 1.2rem; 
   display: flex; align-items: center; justify-content: center; 
-  transition: all 0.2s ease; margin-right: 16px;
+  transition: all 0.2s var(--ease-spring); margin-right: 8px;
 }
-.back-btn:hover { background: var(--border-col); transform: scale(1.05); }
+.back-btn:hover { background: var(--surface); color: var(--text-main); transform: scale(1.05); }
 
-.ppa-main .big { font-size: 2.5rem; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -1px; }
-.ppa-main .big.good { color: var(--green); }
-.ppa-main .big.warn { color: var(--orange); }
-.ppa-main .big.bad  { color: var(--red); }
+.ppa-main .big { font-size: 2.5rem; font-weight: 800; color: var(--text-main); line-height: 1; letter-spacing: -1px; }
 .ppa-main .lbl, .stat-item .lbl { 
-  font-size: 0.7rem; color: var(--muted); margin-top: 6px; 
-  text-transform: uppercase; letter-spacing: 1px; font-weight: 600; display: block;
+  font-size: 0.75rem; color: var(--text-muted); margin-top: 6px; 
+  font-weight: 500; display: block;
 }
 
-.stat-divider { width: 1px; height: 40px; background: var(--border-col); }
-.stat-item .val { font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1; }
-.stat-item .val.red { color: var(--red); }
-.stat-item .val.prog { color: var(--uc); }
+.stat-divider { width: 1px; height: 32px; background: var(--border-subtle); }
+.stat-item .val { font-size: 1.5rem; font-weight: 700; color: var(--text-main); line-height: 1; letter-spacing: -0.5px;}
+
+/* Visual Progress Bar */
+.progress-container {
+  max-width: 1000px; margin: 0 auto; padding: 0 32px 16px;
+}
+.progress-track {
+  width: 100%; height: 6px; background: var(--input-bg); border-radius: 6px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: var(--primary-gradient); border-radius: 6px;
+  width: 0%; transition: width 1s var(--ease-spring);
+}
+.progress-header { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); font-weight: 500; margin-bottom: 8px; }
 
 /* ════════════════════════════════════════
    CONTENT & CARDS
    ════════════════════════════════════════ */
-.calc-content { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+.calc-content { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
 .year-label { 
-  font-size: 1.5rem; color: var(--text); margin: 48px 0 24px; font-weight: 800; 
-  letter-spacing: -0.5px; display: flex; align-items: center; gap: 12px;
+  font-size: 1.5rem; color: var(--text-main); margin: 48px 0 24px; font-weight: 800; 
+  letter-spacing: -0.5px;
 }
 
 .section { 
   background: var(--surface); border-radius: 24px; padding: 24px; 
-  margin-bottom: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-col);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-subtle);
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring);
 }
-.section:hover { box-shadow: var(--shadow-md); }
+.section:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 
-.section-header { 
-  display: flex; align-items: center; gap: 12px; margin-bottom: 20px; 
-}
+.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
 .section-num { 
-  background: var(--uc); color: white; width: 32px; height: 32px; 
+  background: var(--primary-gradient); color: white; width: 32px; height: 32px; 
   border-radius: 10px; display: flex; align-items: center; justify-content: center; 
   font-size: 0.85rem; font-weight: 700; 
 }
-.section-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-.section-credits { margin-left: auto; font-size: 0.8rem; color: var(--muted); font-weight: 500; background: var(--input-bg); padding: 4px 12px; border-radius: 20px;}
+.section-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+.section-credits { margin-left: auto; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; background: var(--row-bg); padding: 6px 12px; border-radius: 20px;}
 
-.optional-note { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; padding: 12px; background: var(--input-bg); border-radius: 12px; }
+.optional-note { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; padding: 12px 16px; background: var(--input-bg); border-radius: 12px; border-left: 3px solid var(--primary); }
 
-/* Rows */
+/* Course Rows */
 .course-row {
-  display: grid; grid-template-columns: 1fr 100px 100px 40px;
+  display: grid; grid-template-columns: 1fr 100px 110px 40px;
   gap: 16px; align-items: center; padding: 16px;
   background: var(--row-bg); border-radius: 16px; margin-bottom: 8px;
-  border: 1px solid var(--border-col); transition: all 0.2s ease;
+  border: 1px solid transparent; transition: all 0.2s var(--ease-spring);
 }
-.course-row:hover { border-color: var(--muted); }
-.course-row.graded { background: var(--green-bg); border-color: rgba(52, 199, 89, 0.2); }
-.course-row.failed { background: var(--red-bg); border-color: rgba(255, 59, 48, 0.2); }
+.course-row:hover { border-color: var(--border-subtle); background: var(--surface); }
 
-.course-code { font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;}
-.course-name { font-size: 0.95rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.course-crd { font-size: 0.75rem; color: var(--muted); margin-top: 4px; font-weight: 500;}
+.course-code { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px;}
+.course-name { font-size: 0.95rem; font-weight: 600; color: var(--text-main); }
+.course-crd { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; font-weight: 500;}
+
+/* Minimalist Badges */
+.badge { display: inline-flex; align-items: center; justify-content: center; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+.badge-empty { background: var(--input-bg); color: var(--text-muted); }
+.badge-success { background: var(--success-bg); color: var(--success); }
+.badge-danger { background: var(--danger-bg); color: var(--danger); }
 
 /* Inputs */
 .grade-input { 
-  width: 100%; border: 2px solid transparent; border-radius: 12px; padding: 12px 10px; 
-  font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; text-align: center; 
-  background: var(--input-bg); color: var(--text); transition: all 0.2s ease; 
+  width: 100%; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 10px; 
+  font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; text-align: center; 
+  background: var(--surface); color: var(--text-main); transition: all 0.2s var(--ease-spring); 
 }
-.grade-input:focus { outline: none; border-color: var(--uc); background: var(--surface); box-shadow: 0 0 0 4px rgba(97, 163, 166, 0.15); }
-.grade-input.valid { color: var(--green); background: var(--surface); border-color: var(--green); }
-.grade-input.invalid { color: var(--red); background: var(--surface); border-color: var(--red); }
-
-.course-status { font-size: 0.8rem; color: var(--muted); text-align: center; font-weight: 600; }
-.course-row.graded .course-status { color: var(--green); }
-.course-row.failed .course-status { color: var(--red); }
+.grade-input:focus { outline: none; border-color: var(--primary); box-shadow: var(--shadow-glow); }
+.grade-input.valid { color: var(--success); border-color: rgba(16, 185, 129, 0.3); }
+.grade-input.invalid { color: var(--danger); border-color: rgba(239, 68, 68, 0.3); }
 
 /* Buttons & Microinteractions */
 .btn-link { 
-  background: none; border: none; color: var(--uc); cursor: pointer; padding: 0; 
+  background: none; border: none; color: var(--primary); cursor: pointer; padding: 0; 
   font-family: 'Inter', sans-serif; font-weight: 600; transition: opacity 0.2s;
 }
 .btn-link:hover { opacity: 0.7; }
 
 .del-btn { 
-  background: var(--input-bg); border: none; color: var(--muted); width: 32px; height: 32px; border-radius: 50%;
+  background: transparent; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 10px;
   font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; 
 }
-.del-btn:hover { background: var(--red-bg); color: var(--red); }
+.del-btn:hover { background: var(--danger-bg); color: var(--danger); }
 
 .add-btn { 
-  background: var(--input-bg); border: 1px dashed var(--muted); color: var(--text); 
-  padding: 12px 20px; border-radius: 12px; cursor: pointer; font-family: 'Inter', sans-serif; 
-  font-size: 0.9rem; margin-top: 8px; transition: all 0.2s; font-weight: 600; width: 100%;
+  background: transparent; border: 1px dashed var(--border-subtle); color: var(--text-muted); 
+  padding: 14px 20px; border-radius: 16px; cursor: pointer; font-family: 'Inter', sans-serif; 
+  font-size: 0.9rem; margin-top: 8px; transition: all 0.2s var(--ease-spring); font-weight: 600; width: 100%;
 }
-.add-btn:hover { border-color: var(--uc); background: var(--surface); color: var(--uc); }
+.add-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.05); }
 
 .retry-btn { 
-  margin-top: 8px; padding: 12px; background: var(--orange-bg); color: var(--orange); 
-  border: none; width: 100%; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: opacity 0.2s;
+  margin-top: 8px; padding: 12px; background: var(--warning-bg); color: var(--warning); 
+  border: none; width: 100%; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: transform 0.2s var(--ease-spring);
 }
-.retry-btn:hover { opacity: 0.8; }
+.retry-btn:hover { transform: scale(0.99); }
 
 /* ════════════════════════════════════════
    FINAL SECTION & SIMULATOR
    ════════════════════════════════════════ */
 .final-section { 
   background: var(--surface); border-radius: 24px; padding: 32px; 
-  box-shadow: var(--shadow-md); border: 1px solid var(--border-col); margin-top: 24px; 
+  box-shadow: var(--shadow-sm); border: 1px solid var(--border-subtle); margin-top: 24px; 
 }
-.final-section h3 { font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 24px; letter-spacing: -0.5px;}
+.final-section h3 { font-size: 1.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 24px; letter-spacing: -0.5px;}
 
 .el-input, .el-select { 
-  border: 1px solid var(--border-col); border-radius: 12px; padding: 12px; 
+  border: 1px solid var(--border-subtle); border-radius: 12px; padding: 10px 12px; 
   font-family: 'Inter', sans-serif; font-size: 0.9rem; width: 100%; 
-  background: var(--input-bg); color: var(--text); transition: all 0.2s ease; 
+  background: var(--surface); color: var(--text-main); transition: all 0.2s var(--ease-spring); 
 }
-.el-input:focus, .el-select:focus { outline: none; border-color: var(--uc); box-shadow: 0 0 0 4px rgba(97, 163, 166, 0.15); }
+.el-input:focus, .el-select:focus { outline: none; border-color: var(--primary); box-shadow: var(--shadow-glow); }
 
-.elective-row { display: grid; grid-template-columns: 1fr 130px 60px 90px 40px; gap: 12px; align-items: center; margin-bottom: 12px; }
+.elective-row { display: grid; grid-template-columns: 1fr 130px 70px 90px 40px; gap: 12px; align-items: center; margin-bottom: 12px; }
 .elective-row.four-col { grid-template-columns: 1fr 80px 100px 40px; }
 
 .exam-box { 
-  background: var(--input-bg); border-radius: 16px; padding: 24px; 
-  display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: 32px 0; 
+  background: var(--row-bg); border-radius: 20px; padding: 24px; 
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: 32px 0; border: 1px solid var(--border-subtle);
 }
-.exam-info h4 { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px;}
+.exam-info h4 { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; color: var(--text-main);}
 .exam-input { 
-  width: 120px; border: 2px solid var(--border-col); border-radius: 16px; padding: 16px; 
+  width: 120px; border: 1px solid var(--border-subtle); border-radius: 16px; padding: 16px; 
   font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 800; text-align: center; 
-  color: var(--text); background: var(--surface); flex-shrink: 0; transition: all 0.2s;
+  color: var(--text-main); background: var(--surface); flex-shrink: 0; transition: all 0.2s;
 }
-.exam-input:focus { border-color: var(--uc); box-shadow: 0 0 0 4px rgba(97, 163, 166, 0.15); outline: none;}
+.exam-input:focus { border-color: var(--primary); box-shadow: var(--shadow-glow); outline: none;}
 
-.final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .final-box { 
-  background: var(--uc); border-radius: 20px; padding: 24px; color: white; 
-  box-shadow: 0 12px 24px rgba(97, 163, 166, 0.25); position: relative; overflow: hidden;
+  background: var(--primary-gradient); border-radius: 20px; padding: 24px; color: white; 
+  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.2); position: relative; overflow: hidden;
 }
 .final-box::after { content:''; position:absolute; top:0; right:0; width:150px; height:150px; background:rgba(255,255,255,0.1); border-radius:50%; transform:translate(30%, -30%); }
-.final-box .fl { font-size: 0.75rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 700; }
+.final-box .fl { font-size: 0.8rem; opacity: 0.9; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 600; }
 .final-box .fn { font-size: 2.5rem; font-weight: 800; line-height: 1;}
-.final-box .formula { font-size: 0.75rem; opacity: 0.8; margin-top: 12px; font-weight: 500;}
+.final-box .formula { font-size: 0.8rem; opacity: 0.8; margin-top: 12px; font-weight: 500;}
 
 /* Utilities */
-.no-grade-row { display: flex; align-items: center; padding: 12px 16px; background: var(--input-bg); border-radius: 12px; margin-bottom: 8px; font-size: 0.85rem; color: var(--muted); }
-.fifth-year-box { background: var(--input-bg); color: var(--muted); padding: 24px; text-align: center; border-radius: 16px; margin: 32px 0 16px; font-weight: 600; border: 1px dashed var(--border-col); }
+.no-grade-row { display: flex; align-items: center; padding: 16px; background: var(--input-bg); border-radius: 16px; margin-bottom: 8px; font-size: 0.85rem; color: var(--text-muted); }
+.fifth-year-box { background: var(--input-bg); color: var(--text-muted); padding: 24px; text-align: center; border-radius: 20px; margin: 32px 0 16px; font-weight: 600; border: 1px dashed var(--border-subtle); }
 .reset-row { display: flex; justify-content: center; margin-top: 40px; }
-.reset-btn-main { background: none; border: 1px solid var(--border-col); color: var(--red); padding: 12px 24px; border-radius: 100px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.9rem; transition: all 0.2s; font-weight: 600; }
-.reset-btn-main:hover { background: var(--red-bg); border-color: var(--red); }
+.reset-btn-main { background: none; border: 1px solid var(--border-subtle); color: var(--danger); padding: 12px 24px; border-radius: 100px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.9rem; transition: all 0.2s var(--ease-spring); font-weight: 600; }
+.reset-btn-main:hover { background: var(--danger-bg); border-color: transparent; }
 
 /* Modal Simulator */
 .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; opacity: 0; animation: fadeIn 0.3s forwards; }
-.modal-box { background: var(--surface); width: 95%; max-width: 500px; padding: 32px; border-radius: 24px; box-shadow: var(--shadow-md); max-height: 90vh; overflow-y: auto; transform: translateY(20px); animation: slideUp 0.3s forwards; }
+.modal-box { background: var(--surface); width: 95%; max-width: 500px; padding: 32px; border-radius: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border-subtle); max-height: 90vh; overflow-y: auto; transform: translateY(20px); animation: slideUp 0.3s forwards; }
 .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
 .modal-header h3 { font-size: 1.2rem; font-weight: 800; }
-.close-btn { background: var(--input-bg); border: none; font-size: 1.2rem; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; color: var(--text); display:flex; align-items:center; justify-content:center; transition: background 0.2s;}
-.close-btn:hover { background: var(--border-col); }
+.close-btn { background: var(--input-bg); border: none; font-size: 1.2rem; width: 36px; height: 36px; border-radius: 12px; cursor: pointer; color: var(--text-muted); display:flex; align-items:center; justify-content:center; transition: all 0.2s;}
+.close-btn:hover { background: var(--border-subtle); color: var(--text-main); }
 
-.sim-input { border: 1px solid var(--border-col); border-radius: 10px; padding: 10px; font-family: 'Inter', sans-serif; font-size: 0.9rem; text-align: center; background: var(--input-bg); color: var(--text); width: 100%; transition: all 0.2s;}
-.sim-input:focus { outline:none; border-color:var(--uc); }
+.sim-input { border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px; font-family: 'Inter', sans-serif; font-size: 0.9rem; text-align: center; background: var(--surface); color: var(--text-main); width: 100%; transition: all 0.2s;}
+.sim-input:focus { outline:none; border-color:var(--primary); box-shadow: var(--shadow-glow); }
 .sim-row { display: grid; grid-template-columns: 1fr 80px 80px 40px; gap: 12px; margin-bottom: 12px; align-items: center; }
-.sim-save-btn { background: var(--text); color: var(--surface); border: none; padding: 16px; border-radius: 16px; cursor: pointer; font-size: 0.95rem; width: 100%; margin-top: 24px; font-weight: 600; transition: transform 0.2s; }
+.sim-save-btn { background: var(--text-main); color: var(--bg); border: none; padding: 16px; border-radius: 16px; cursor: pointer; font-size: 0.95rem; width: 100%; margin-top: 24px; font-weight: 600; transition: transform 0.2s var(--ease-spring); }
 .sim-save-btn:hover { transform: scale(0.98); }
 
 /* Toasts & Animations */
 #toast-felicidades {
-  visibility: hidden; min-width: 280px; background-color: var(--text); color: var(--surface);
+  visibility: hidden; min-width: 280px; background: var(--primary-gradient); color: white;
   text-align: center; border-radius: 100px; padding: 16px 24px; position: fixed;
   z-index: 10000; left: 50%; bottom: 20px; transform: translate(-50%, 20px);
   font-size: 1rem; font-weight: 600; box-shadow: var(--shadow-md);
-  opacity: 0; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0; transition: all 0.4s var(--ease-spring);
 }
 #toast-felicidades.show { visibility: visible; opacity: 1; transform: translate(-50%, 0); bottom: 40px; }
 
@@ -314,13 +336,12 @@ body {
 @keyframes slideUp { to { transform: translateY(0); } }
 
 @media(max-width: 768px){
-  .course-row { grid-template-columns: 1fr 80px 80px 36px; padding: 12px; gap: 10px;}
+  .course-row { grid-template-columns: 1fr 80px 80px 36px; padding: 16px; gap: 12px;}
   .elective-row { grid-template-columns: 1fr 100px 80px 36px; }
   .elective-row.four-col { grid-template-columns: 1fr 70px 80px 36px; }
   .final-grid { grid-template-columns: 1fr; }
-  .stats-bar { padding: 12px 20px; justify-content: center; text-align: center; gap: 16px;}
+  .stats-bar { padding: 16px 24px; gap: 16px; justify-content: space-between;}
   .stat-divider { display: none; }
-  .back-btn { position: absolute; left: 16px; top: 16px; }
   .ppa-main { width: 100%; margin-bottom: 8px;}
 }
 </style>
@@ -360,37 +381,44 @@ body {
 </div>
 
 <div id="screen-calc">
-  <div class="stats-bar">
-    <button class="back-btn" onclick="goBack()">←</button>
-    <div class="ppa-main">
-      <div class="big" id="stat-ppa">—</div>
-      <div class="lbl">PPA Actual</div>
+  <div class="stats-bar-wrapper">
+    <div class="stats-bar">
+      <button class="back-btn" onclick="goBack()">←</button>
+      <div class="ppa-main">
+        <div class="big" id="stat-ppa">—</div>
+        <div class="lbl">PPA Actual</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="val" id="stat-crd">0</span>
+        <span class="lbl">Créditos</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="val" id="stat-apr">0</span>
+        <span class="lbl">Aprobados</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="val" id="stat-rep" style="color:var(--danger)">0</span>
+        <span class="lbl">Reprobados</span>
+      </div>
     </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="val" id="stat-crd">0</span>
-      <span class="lbl">Créditos</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="val" id="stat-apr">0</span>
-      <span class="lbl">Aprobados</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="val red" id="stat-rep">0</span>
-      <span class="lbl">Reprobados</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="val prog" id="stat-prog">0%</span>
-      <span class="lbl">Avance (410 crd)</span>
+    
+    <div class="progress-container">
+      <div class="progress-header">
+        <span>Avance Curricular (410 crd)</span>
+        <span id="stat-prog-text">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="stat-prog-fill"></div>
+      </div>
     </div>
   </div>
 
   <div class="calc-content" id="calc-content"></div>
   
-  <div style="text-align: center; margin-top: 40px; color: var(--muted); font-size: 0.85rem; font-weight: 600;">
+  <div style="text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">
     CABIOUC 2026
   </div>
 </div>
@@ -402,36 +430,36 @@ body {
       <button class="close-btn" onclick="closeSim()">×</button>
     </div>
     
-    <div style="background:var(--input-bg); padding:16px; border-radius:16px; margin-bottom:20px;">
+    <div style="background:var(--row-bg); padding:20px; border-radius:16px; margin-bottom:24px; border:1px solid var(--border-subtle);">
       <label style="display:flex; align-items:center; gap:10px; font-weight:600; cursor:pointer;">
-        <input type="checkbox" id="sim-chk-exam" onchange="toggleSimExam()" style="width:18px; height:18px; accent-color:var(--uc);"> 
+        <input type="checkbox" id="sim-chk-exam" onchange="toggleSimExam()" style="width:18px; height:18px; accent-color:var(--primary);"> 
         El curso tiene Examen Final
       </label>
       <div id="sim-exam-details" style="display:none; grid-template-columns: 1fr 1fr; gap:16px; margin-top:16px;">
         <div>
-          <label style="font-size:0.8rem; color:var(--muted); font-weight:600; display:block; margin-bottom:6px;">Ponderación Examen (%)</label>
+          <label style="font-size:0.8rem; color:var(--text-muted); font-weight:600; display:block; margin-bottom:6px;">Ponderación Examen (%)</label>
           <input type="number" id="sim-inp-exam-weight" class="sim-input" value="30" oninput="updateSimConfig()">
         </div>
         <div>
-          <label style="font-size:0.8rem; color:var(--muted); font-weight:600; display:block; margin-bottom:6px;">Nota eximición</label>
+          <label style="font-size:0.8rem; color:var(--text-muted); font-weight:600; display:block; margin-bottom:6px;">Nota eximición</label>
           <input type="number" id="sim-inp-exam-exim" class="sim-input" step="0.1" value="5.0" oninput="updateSimConfig()">
         </div>
       </div>
     </div>
 
-    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:16px; font-weight:600;">
+    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; font-weight:600;">
       Evaluaciones de Presentación (Suman 100%)
     </p>
     
     <div id="sim-rows"></div>
     <button class="add-btn" onclick="addSimRow()">+ Agregar evaluación</button>
 
-    <div id="sim-exam-grade-box" style="display:none; margin-top:20px; background:var(--orange-bg); padding:16px; border-radius:16px; border:1px solid rgba(255, 149, 0, 0.3);">
-      <label style="font-size:0.9rem; color:var(--orange); font-weight:700; display:block; margin-bottom:8px;">Tuviste que dar examen. Ingresa tu nota:</label>
-      <input type="number" id="sim-inp-exam-grade" class="sim-input" style="border-color:var(--orange); max-width:150px; font-size:1.1rem; font-weight:bold;" min="1" max="7" step="0.1" placeholder="Nota Examen" oninput="updateSimExamGrade()">
+    <div id="sim-exam-grade-box" style="display:none; margin-top:20px; background:var(--warning-bg); padding:20px; border-radius:16px; border:1px dashed var(--warning);">
+      <label style="font-size:0.9rem; color:var(--warning); font-weight:700; display:block; margin-bottom:12px;">Ingresa la nota del examen:</label>
+      <input type="number" id="sim-inp-exam-grade" class="sim-input" style="border-color:var(--warning); max-width:150px; font-size:1.1rem; font-weight:bold;" min="1" max="7" step="0.1" placeholder="Nota" oninput="updateSimExamGrade()">
     </div>
 
-    <div style="background:var(--row-bg); border:1px solid var(--border-col); border-radius:16px; padding:20px; margin-top:24px; font-size:0.9rem; line-height:1.6;" id="sim-results-content">
+    <div style="background:var(--row-bg); border:1px solid var(--border-subtle); border-radius:16px; padding:20px; margin-top:24px; font-size:0.9rem; line-height:1.6;" id="sim-results-content">
     </div>
 
     <button class="sim-save-btn" onclick="useSimGrade()">Guardar Nota en la Calculadora</button>
@@ -439,13 +467,8 @@ body {
 </div>
 
 <script>
-// El bloque de Javascript se mantiene EXACTAMENTE IGUAL para no romper ninguna lógica interna.
-// Solo copia y pega tu JS actual aquí adentro:
-// [INSERTA TU JS ORIGINAL AQUÍ ABAJO]
-
-// ════════════════════════════════════════
-// MALLAS DE CARRERAS
-// ════════════════════════════════════════
+// El bloque de Mallas se mantiene intacto. 
+// Copio directo tu data para asegurar compatibilidad.
 const MALLAS = {
   bio: [
     { year:'Primer Año', sems:[
@@ -736,9 +759,7 @@ const MALLAS = {
   ]
 };
 
-// ════════════════════════════════════════
 // STATE
-// ════════════════════════════════════════
 let currentCareer = null;
 let MALLA = [];
 let ofgReq = 70;
@@ -757,22 +778,11 @@ function selectCareer(id) {
   currentCareer = id;
   MALLA = MALLAS[id];
   
-  if (id === 'bio') {
-    ofgReq = 70;
-    oprReq = 20;
-  } else if (id === 'bio_new') {
-    ofgReq = 60; 
-    oprReq = 60;
-  } else if (id === 'biomar') {
-    ofgReq = 60; 
-    oprReq = 50; 
-  } else if (id === 'biomar_new') {
-    ofgReq = 60; 
-    oprReq = 50; 
-  } else if (id === 'bq') {
-    ofgReq = 60;
-    oprReq = 15;
-  }
+  if (id === 'bio') { ofgReq = 70; oprReq = 20; } 
+  else if (id === 'bio_new') { ofgReq = 60; oprReq = 60; } 
+  else if (id === 'biomar') { ofgReq = 60; oprReq = 50; } 
+  else if (id === 'biomar_new') { ofgReq = 60; oprReq = 50; } 
+  else if (id === 'bq') { ofgReq = 60; oprReq = 15; }
 
   grades    = JSON.parse(localStorage.getItem('ppa4-g-'+id) || '{}');
   examGrado = grades.__exam__ !== undefined ? grades.__exam__ : null;
@@ -795,9 +805,6 @@ function goBack() {
   document.getElementById('screen-calc').style.display   = 'none';
 }
 
-// ════════════════════════════════════════
-// RENDER GENERAL
-// ════════════════════════════════════════
 function renderCalc() {
   const c = document.getElementById('calc-content');
   c.innerHTML = '';
@@ -829,7 +836,7 @@ function renderCalc() {
 
   const rr = document.createElement('div');
   rr.className='reset-row';
-  rr.innerHTML='<button class="reset-btn-main" onclick="resetAll()">🗑 Reiniciar datos</button>';
+  rr.innerHTML='<button class="reset-btn-main" onclick="resetAll()">Restablecer todo</button>';
   c.appendChild(rr);
   recalc();
 }
@@ -838,7 +845,7 @@ function makeCourseBlock(curso) {
   if (curso.noGrade) {
     const d = document.createElement('div');
     d.className = 'no-grade-row';
-    d.innerHTML = `📋 <strong>${curso.code}</strong> — ${curso.name} &nbsp;<em>(requisito sin nota)</em>`;
+    d.innerHTML = `📋 <strong style="color:var(--text-main); margin-right:6px;">${curso.code}</strong> ${curso.name} &nbsp;<em>(requisito)</em>`;
     return d;
   }
 
@@ -861,10 +868,17 @@ function makeCourseBlock(curso) {
       const isRetry = idx > 0;
 
       let rowClass = 'course-row';
-      if (hasN) rowClass += aprobado ? ' graded' : ' failed';
+      let badgeClass = 'badge-empty';
+      let badgeText = 'Pendiente';
+      
+      if (hasN) {
+        rowClass += aprobado ? ' graded' : ' failed';
+        badgeClass = aprobado ? 'badge-success' : 'badge-danger';
+        badgeText = aprobado ? 'Aprobado' : 'Reprobado';
+      }
 
       const intentoBadge = isRetry
-        ? `<span style="display:inline-block;background:var(--orange);color:white;font-size:0.6rem;font-weight:700;padding:2px 6px;border-radius:10px;margin-left:4px;">Intento ${idx+1}</span>`
+        ? `<span style="display:inline-block;background:var(--warning-bg);color:var(--warning);font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;">Intento ${idx+1}</span>`
         : '';
 
       const row = document.createElement('div');
@@ -877,14 +891,14 @@ function makeCourseBlock(curso) {
           <div class="course-name" title="${curso.name}">${curso.name}</div>
           <div class="course-crd">
             ${curso.crd} créditos · 
-            <button class="btn-link" onclick="openSim('${curso.code}', '${curso.name.replace(/'/g, "\\'")}', 'malla', ${idx})" style="font-size:0.75rem;">📊 Simular</button>
+            <button class="btn-link" onclick="openSim('${curso.code}', '${curso.name.replace(/'/g, "\\'")}', 'malla', ${idx})">Simular notas</button>
           </div>
         </div>
         <input class="grade-input ${hasN?(aprobado?'valid':'invalid'):''}" type="number"
           min="1" max="7" step="0.1" placeholder="—" value="${nota}"
           oninput="setAttemptGrade('${curso.code}', ${idx}, this)" />
-        <div class="course-status" id="status-${curso.code}-${idx}">
-          ${hasN ? (aprobado ? 'Aprobado' : 'Reprobado') : '—'}
+        <div class="course-status" id="status-wrap-${curso.code}-${idx}">
+          <span class="badge ${badgeClass}" id="status-${curso.code}-${idx}">${badgeText}</span>
         </div>
         <div>
           ${isRetry ? `<button class="del-btn" onclick="removeAttempt('${curso.code}', ${idx})">×</button>` : ''}
@@ -899,7 +913,7 @@ function makeCourseBlock(curso) {
     const retryBtn = document.createElement('button');
     retryBtn.className = 'retry-btn';
     retryBtn.id = 'retry-btn-' + curso.code;
-    retryBtn.textContent = '+ Ramo Reprobado (Agregar repetición)';
+    retryBtn.textContent = '+ Ramo Reprobado (Añadir repetición)';
     retryBtn.style.display = (!isNaN(lastNota) && lastNota >= 1 && lastNota < 4 && !approvedAlready) ? 'block' : 'none';
     retryBtn.onclick = () => { addAttempt(curso.code); };
     wrap.appendChild(retryBtn);
@@ -915,16 +929,15 @@ function buildFinalSection() {
   box.className = 'final-section';
   box.id = 'final-section';
 
-  box.innerHTML = `<h3>📊 Electivos y Notas Finales</h3>`;
+  box.innerHTML = `<h3>📊 Electivos y Examen de Grado</h3>`;
 
-  // OFG
   const efgB = document.createElement('div');
   efgB.style.marginBottom = '32px';
-  efgB.innerHTML = `<h4 style="font-size:0.85rem; color:var(--muted); text-transform:uppercase; margin-bottom:12px;">OFG (${ofgReq} créditos)</h4>`;
+  efgB.innerHTML = `<h4 style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:12px; font-weight:700;">OFG (${ofgReq} créditos)</h4>`;
   efgB.id = 'efg-block';
   efgExtra.forEach(r => efgB.appendChild(makeEFGRow(r)));
   const addEFG = document.createElement('button');
-  addEFG.className = 'add-btn'; addEFG.textContent = '+ Agregar OFG';
+  addEFG.className = 'add-btn'; addEFG.textContent = '+ Añadir curso OFG';
   addEFG.onclick = () => {
     const r = {id:'e'+(++uid), nombre:'', area:'', crd:10, nota:''};
     efgExtra.push(r); saveEFG();
@@ -934,14 +947,13 @@ function buildFinalSection() {
   efgB.appendChild(addEFG);
   box.appendChild(efgB);
 
-  // OPR
   const oprB = document.createElement('div');
   oprB.style.marginBottom = '32px';
-  oprB.innerHTML = `<h4 style="font-size:0.85rem; color:var(--muted); text-transform:uppercase; margin-bottom:12px;">OPR (${oprReq} créditos)</h4>`;
+  oprB.innerHTML = `<h4 style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:12px; font-weight:700;">OPR (${oprReq} créditos)</h4>`;
   oprB.id = 'opr-block';
   oprLic.forEach(r => oprB.appendChild(makeOPRRow(r)));
   const addOPR = document.createElement('button');
-  addOPR.className = 'add-btn'; addOPR.textContent = '+ Agregar OPR';
+  addOPR.className = 'add-btn'; addOPR.textContent = '+ Añadir curso OPR';
   addOPR.onclick = () => {
     const r = {id:'o'+(++uid), nombre:'', crd:10, nota:''};
     oprLic.push(r); saveOPR();
@@ -951,13 +963,12 @@ function buildFinalSection() {
   oprB.appendChild(addOPR);
   box.appendChild(oprB);
 
-  // EXAMEN
   const examDiv = document.createElement('div');
   examDiv.className = 'exam-box';
   examDiv.innerHTML = `
     <div class="exam-info">
       <h4>Examen de Grado</h4>
-      <p style="font-size:0.8rem; color:var(--muted); margin-top:4px;">Nota Licenciatura = (0.75 × PPA) + (0.25 × Ex. Grado)</p>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Nota Final = (0.75 × PPA) + (0.25 × Examen)</p>
     </div>
     <input class="exam-input" type="number" min="1" max="7" step="0.1"
       placeholder="—" value="${examGrado!==null?examGrado:''}"
@@ -979,13 +990,13 @@ function makeEFGRow(r) {
 
   const nameWrap = document.createElement('div');
   const ni = document.createElement('input'); 
-  ni.className='el-input'; ni.type='text'; ni.placeholder='Nombre del OFG'; ni.value=r.nombre||'';
+  ni.className='el-input'; ni.type='text'; ni.placeholder='Nombre del curso'; ni.value=r.nombre||'';
   ni.oninput = e => { r.nombre = e.target.value; saveEFG(); };
   
   const simBtn = document.createElement('button');
   simBtn.className = 'btn-link';
-  simBtn.textContent = '📊 Simular';
-  simBtn.style.cssText = 'font-size:0.75rem; margin-top:6px; display:block;';
+  simBtn.textContent = 'Simular';
+  simBtn.style.cssText = 'font-size:0.75rem; margin-top:8px; display:block;';
   simBtn.onclick = () => openSim(r.id, r.nombre || 'OFG', 'efg', r.id);
   nameWrap.appendChild(ni);
   nameWrap.appendChild(simBtn);
@@ -998,7 +1009,7 @@ function makeEFGRow(r) {
   ci.oninput=e=>{r.crd=parseInt(e.target.value)||0;saveEFG();recalc();};
 
   const inp = document.createElement('input'); inp.className='el-input'; inp.type='number'; inp.min=1; inp.max=7; inp.step=0.1;
-  inp.placeholder='Nota'; inp.value=r.nota||''; inp.style.textAlign='center'; inp.style.fontWeight='bold';
+  inp.placeholder='Nota'; inp.value=r.nota||''; inp.style.textAlign='center'; inp.style.fontWeight='600';
   inp.oninput = e => { r.nota=e.target.value; saveEFG(); recalc(); };
 
   const del = document.createElement('button'); del.className='del-btn'; del.textContent='×';
@@ -1017,21 +1028,23 @@ function makeOPRRow(r) {
   
   const nameWrap = document.createElement('div');
   const ni=document.createElement('input'); 
-  ni.className='el-input'; ni.type='text'; ni.placeholder='Nombre del OPR'; ni.value=r.nombre||'';
+  ni.className='el-input'; ni.type='text'; ni.placeholder='Nombre del curso'; ni.value=r.nombre||'';
   ni.oninput=e=>{r.nombre=e.target.value;saveOPR();};
   
   const simBtn = document.createElement('button');
   simBtn.className = 'btn-link';
-  simBtn.textContent = '📊 Simular';
-  simBtn.style.cssText = 'font-size:0.75rem; margin-top:6px; display:block;';
+  simBtn.textContent = 'Simular';
+  simBtn.style.cssText = 'font-size:0.75rem; margin-top:8px; display:block;';
   simBtn.onclick = () => openSim(r.id, r.nombre || 'OPR', 'opr', r.id);
   nameWrap.appendChild(ni);
   nameWrap.appendChild(simBtn);
 
   const ci=document.createElement('input'); ci.className='el-input'; ci.type='number'; ci.min=1; ci.placeholder='Crd'; ci.value=r.crd||10; ci.style.textAlign='center';
   ci.oninput=e=>{r.crd=parseInt(e.target.value)||0;saveOPR();recalc();};
-  const gi=document.createElement('input'); gi.className='el-input'; gi.type='number'; gi.min=1; gi.max=7; gi.step=0.1; gi.placeholder='Nota'; gi.value=r.nota||''; gi.style.textAlign='center'; gi.style.fontWeight='bold';
+  
+  const gi=document.createElement('input'); gi.className='el-input'; gi.type='number'; gi.min=1; gi.max=7; gi.step=0.1; gi.placeholder='Nota'; gi.value=r.nota||''; gi.style.textAlign='center'; gi.style.fontWeight='600';
   gi.oninput=e=>{r.nota=e.target.value;saveOPR();recalc();};
+  
   const del=document.createElement('button'); del.className='del-btn'; del.textContent='×';
   del.onclick=()=>{
     oprLic=oprLic.filter(x=>x.id!==r.id); saveOPR(); delete simData[r.id]; saveSim(); div.remove(); recalc();
@@ -1041,7 +1054,7 @@ function makeOPRRow(r) {
   return div;
 }
 
-// Lógica original de cálculo y simulador...
+// Interacción y actualización de UI
 function setAttemptGrade(code, idx, input) {
   if (!Array.isArray(grades[code])) grades[code] = [''];
   grades[code][idx] = input.value;
@@ -1061,7 +1074,10 @@ function setAttemptGrade(code, idx, input) {
   }
 
   const st = document.getElementById('status-' + code + '-' + idx);
-  if (st) st.textContent = !hasN ? '—' : (aprobado ? 'Aprobado' : 'Reprobado');
+  if (st) {
+    st.className = 'badge ' + (hasN ? (aprobado ? 'badge-success' : 'badge-danger') : 'badge-empty');
+    st.textContent = hasN ? (aprobado ? 'Aprobado' : 'Reprobado') : 'Pendiente';
+  }
 
   const retryBtn = document.getElementById('retry-btn-' + code);
   if (retryBtn) {
@@ -1100,6 +1116,7 @@ function setExamen(val) {
     prevExamGrado = examGrado;
     if (typeof confetti === 'function') confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     const toast = document.getElementById('toast-felicidades');
+    toast.textContent = '🎉 ¡Nota de examen guardada!';
     toast.className = 'show';
     setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3500);
   } else if (examGrado === null || isNaN(examGrado)) {
@@ -1108,11 +1125,12 @@ function setExamen(val) {
 }
 
 function formatReq(n) {
-  if (n <= 1) return 'Ya lo lograste (Mín. 1.0)';
+  if (n <= 1) return 'Logrado (Mín 1.0)';
   if (n > 7) return n.toFixed(2) + ' (Imposible)';
   return n.toFixed(2);
 }
 
+// Simulador
 function openSim(code, name, type, targetId) {
   currentSimCourse = {code, name, type, targetId};
   if(!simData[code] || Array.isArray(simData[code])) {
@@ -1165,7 +1183,7 @@ function renderSim() {
     div.innerHTML = `
       <input class="sim-input" type="text" placeholder="Control 1" value="${item.name}" oninput="updateSim(${i}, 'name', this.value)" style="text-align:left;">
       <input class="sim-input" type="number" min="0" max="100" placeholder="%" value="${item.weight}" oninput="updateSim(${i}, 'weight', this.value)">
-      <input class="sim-input" type="number" min="1" max="7" step="0.1" placeholder="Nota" value="${item.grade}" oninput="updateSim(${i}, 'grade', this.value)" style="font-weight:bold;">
+      <input class="sim-input" type="number" min="1" max="7" step="0.1" placeholder="Nota" value="${item.grade}" oninput="updateSim(${i}, 'grade', this.value)" style="font-weight:600;">
       <button class="del-btn" onclick="delSim(${i})">×</button>
     `;
     container.appendChild(div);
@@ -1187,43 +1205,43 @@ function calcSimTotals() {
     if(!isNaN(g) && g >= 1 && g <= 7) npAccum += g * (w / 100);
   });
   const wMissing = Math.max(0, 100 - wSum);
-  let resHTML = `<p>Suma de porcentajes ingresados: <span style="font-weight:bold; color:${wSum>100?'var(--red)':'var(--text)'}">${wSum}% / 100%</span></p>`;
+  let resHTML = `<p style="margin-bottom:12px;">Suma de ponderaciones: <span style="font-weight:700; color:${wSum>100?'var(--danger)':'var(--text-main)'}">${wSum}% / 100%</span></p>`;
 
   if (wSum < 100) {
     let currentAvg = wSum > 0 ? (npAccum / (wSum/100)).toFixed(2) : '—';
-    resHTML += `<p>Promedio al día de hoy: <strong>${currentAvg}</strong></p>`;
+    resHTML += `<p style="margin-bottom:8px;">Promedio parcial: <strong style="color:var(--text-main); font-size:1.1rem;">${currentAvg}</strong></p>`;
     let missingFor4 = 4.0 - npAccum; let req4 = missingFor4 / (wMissing / 100);
-    resHTML += `<p>Nota necesaria en el resto para un 4.0: <strong style="color:var(--orange);">${formatReq(req4)}</strong></p>`;
+    resHTML += `<p style="margin-bottom:8px;">Para aprobar (4.0) necesitas: <strong style="color:var(--warning);">${formatReq(req4)}</strong> en el resto.</p>`;
     if (data.hasExam) {
       let missingForExim = data.eximGrade - npAccum; let reqExim = missingForExim / (wMissing / 100);
-      resHTML += `<p>Nota necesaria para Eximirte (NP ${data.eximGrade}): <strong style="color:var(--uc);">${formatReq(reqExim)}</strong></p>`;
+      resHTML += `<p>Para eximirte (NP ${data.eximGrade}) necesitas: <strong style="color:var(--primary);">${formatReq(reqExim)}</strong></p>`;
     }
     document.getElementById('sim-exam-grade-box').style.display = 'none';
   } else if (wSum === 100) {
     let np = npAccum;
-    resHTML += `<p>Nota de Presentación (NP): <strong style="font-size:1.1rem;">${np.toFixed(2)}</strong></p>`;
+    resHTML += `<p style="margin-bottom:12px;">Nota de Presentación (NP): <strong style="font-size:1.2rem; color:var(--text-main);">${np.toFixed(2)}</strong></p>`;
     if (!data.hasExam) {
-      resHTML += `<p style="margin-top:10px;">Nota Final del Ramo: <strong style="color:${np>=4?'var(--green)':'var(--red)'}; font-size:1.3rem;">${np.toFixed(1)}</strong></p>`;
+      resHTML += `<div style="padding-top:12px; border-top:1px solid var(--border-subtle);"><p>Nota Final del Ramo: <strong style="color:${np>=4?'var(--success)':'var(--danger)'}; font-size:1.4rem;">${np.toFixed(1)}</strong></p></div>`;
       document.getElementById('sim-exam-grade-box').style.display = 'none';
     } else {
       if (np >= data.eximGrade) {
-        resHTML += `<p style="color:var(--green); font-weight:bold; margin-top:10px;">🎉 ¡Te eximiste!</p>`;
-        resHTML += `<p>Nota Final del Ramo: <strong style="color:var(--green); font-size:1.3rem;">${np.toFixed(1)}</strong></p>`;
+        resHTML += `<div style="padding-top:12px; border-top:1px solid var(--border-subtle);"><p style="color:var(--success); font-weight:700; margin-bottom:4px;">🎉 ¡Te eximiste del examen!</p>`;
+        resHTML += `<p>Nota Final del Ramo: <strong style="color:var(--success); font-size:1.4rem;">${np.toFixed(1)}</strong></p></div>`;
         document.getElementById('sim-exam-grade-box').style.display = 'none';
       } else {
-        resHTML += `<p style="color:var(--orange); font-weight:bold; margin-top:10px;">⚠️ No te eximes.</p>`;
+        resHTML += `<div style="padding-top:12px; border-top:1px solid var(--border-subtle);"><p style="color:var(--warning); font-weight:700; margin-bottom:8px;">⚠️ No lograste eximirte.</p>`;
         let ew = data.examWeight / 100; let reqExam = (4.0 - np * (1 - ew)) / ew;
-        resHTML += `<p>Nota necesaria en Examen para salvar (4.0): <strong style="color:var(--red);">${formatReq(reqExam)}</strong></p>`;
+        resHTML += `<p>Necesitas un <strong style="color:var(--danger);">${formatReq(reqExam)}</strong> en el examen para el 4.0.</p></div>`;
         document.getElementById('sim-exam-grade-box').style.display = 'block';
         let gEx = parseFloat(data.examGrade);
         if (!isNaN(gEx) && gEx >= 1 && gEx <= 7) {
           let nf = np * (1 - ew) + gEx * ew;
-          resHTML += `<p style="margin-top:10px;">Nota Final del Ramo: <strong style="color:${nf>=4?'var(--green)':'var(--red)'}; font-size:1.3rem;">${nf.toFixed(1)}</strong></p>`;
+          resHTML += `<div style="padding-top:16px; margin-top:16px; border-top:1px dashed var(--border-subtle);"><p>Nota Final del Ramo: <strong style="color:${nf>=4?'var(--success)':'var(--danger)'}; font-size:1.4rem;">${nf.toFixed(1)}</strong></p></div>`;
         }
       }
     }
   } else {
-    resHTML += `<p style="color:var(--red); font-weight:bold;">Tus evaluaciones superan el 100%.</p>`;
+    resHTML += `<p style="color:var(--danger); font-weight:700;">Tus evaluaciones superan el 100%.</p>`;
     document.getElementById('sim-exam-grade-box').style.display = 'none';
   }
   document.getElementById('sim-results-content').innerHTML = resHTML;
@@ -1244,7 +1262,7 @@ function useSimGrade() {
     if (npAccum >= data.eximGrade) finalGrade = npAccum;
     else {
       let ex = parseFloat(data.examGrade);
-      if (isNaN(ex) || ex < 1 || ex > 7) { alert('Debes ingresar la nota del examen.'); return; }
+      if (isNaN(ex) || ex < 1 || ex > 7) { alert('Ingresa la nota del examen para calcular tu final.'); return; }
       let ew = data.examWeight / 100; finalGrade = npAccum * (1 - ew) + ex * ew;
     }
   }
@@ -1312,19 +1330,28 @@ function recalc() {
   const progress = Math.min(100, (aprCrdTotal / 410) * 100);
 
   const pe=document.getElementById('stat-ppa');
-  if(ppa!==null){ pe.textContent=ppa.toFixed(2); pe.className='big '+(ppa>=5.5?'good':ppa>=4.5?'warn':'bad'); }
-  else{ pe.textContent='—'; pe.className='big'; }
+  if(ppa!==null){ 
+    pe.textContent=ppa.toFixed(2); 
+    pe.style.color = ppa>=5.5 ? 'var(--success)' : (ppa>=4.5 ? 'var(--warning)' : 'var(--danger)');
+  } else { 
+    pe.textContent='—'; 
+    pe.style.color = 'var(--text-main)';
+  }
+  
   document.getElementById('stat-crd').textContent=sumC;
   document.getElementById('stat-apr').textContent=apr;
   document.getElementById('stat-rep').textContent=rep;
-  document.getElementById('stat-prog').textContent=progress.toFixed(1) + '%';
+  
+  // Actualizar la nueva barra de progreso visual
+  document.getElementById('stat-prog-text').textContent=progress.toFixed(1) + '%';
+  document.getElementById('stat-prog-fill').style.width = progress + '%';
 
   const grid=document.getElementById('final-grid');
   if(grid) grid.innerHTML=`
-    <div class="final-box">
-      <div class="fl">PPA Licenciatura</div>
+    <div class="final-box" style="background: var(--surface); color: var(--text-main); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm);">
+      <div class="fl" style="color:var(--text-muted);">PPA Licenciatura</div>
       <div class="fn">${ppa!==null?ppa.toFixed(2):'—'}</div>
-      <div class="formula">${sumC} créditos · ${apr+rep} ramos evaluados</div>
+      <div class="formula" style="color:var(--text-muted);">${sumC} créditos evaluados</div>
     </div>
     <div class="final-box">
       <div class="fl">Nota Final Licenciatura</div>
@@ -1338,7 +1365,7 @@ function saveEFG()   { localStorage.setItem('ppa4-efg-'+currentCareer, JSON.stri
 function saveOPR()   { localStorage.setItem('ppa4-opr-'+currentCareer, JSON.stringify(oprLic)); }
 
 function resetAll(){
-  if(!confirm('¿Seguro que quieres borrar todas tus notas guardadas?')) return;
+  if(!confirm('¿Seguro que quieres borrar todos los datos ingresados?')) return;
   grades={}; efgExtra=[]; oprLic=[]; examGrado=null; simData={};
   localStorage.removeItem('ppa4-g-'+currentCareer);
   localStorage.removeItem('ppa4-efg-'+currentCareer);
