@@ -131,13 +131,28 @@ a.card:hover {
 
 /* Contenido de la Card */
 .card-icon-wrap {
-  width: 56px; height: 56px; border-radius: 16px; 
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.8rem; margin-bottom: 20px;
+  width: 56px; 
+  height: 56px; 
+  border-radius: 16px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-size: 1.8rem; 
+  margin-bottom: 20px;
+  
+  /* Esto es lo que centra el ícono */
+  margin-left: auto;
+  margin-right: auto;
+  
   background: var(--surface);
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
+
 .card.calc .card-icon-wrap { background: var(--primary-gradient); color: white; }
+.card.malla .card-icon-wrap { 
+  background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%); 
+  color: white; 
+}
 .card.ig .card-icon-wrap { background: var(--instagram-gradient); color: white; }
 
 .card-title {
@@ -201,7 +216,7 @@ a.card:hover .card-arrow {
       <div class="card-arrow">→</div>
     </a>
 
-    <a href="https://vavblanco.github.io/malla-uc/" target="_blank" rel="noopener noreferrer" class="card">
+    <a href="https://vavblanco.github.io/malla-uc/" class="card malla">
       <div class="card-icon-wrap">📚</div>
       <h2 class="card-title">Malla Interactiva</h2>
       <p class="card-desc">Visualiza prerrequisitos, planifica tus ramos futuros y marca tu progreso visualmente.</p>
