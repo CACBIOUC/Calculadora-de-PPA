@@ -67,7 +67,6 @@ body {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   transition: background 0.4s ease, color 0.4s ease;
   -webkit-font-smoothing: antialiased;
-  /* Fondo radial sutil para el Hero */
   background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
                     radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%);
   background-attachment: fixed;
@@ -139,11 +138,8 @@ a.card:hover {
   justify-content: center;
   font-size: 1.8rem; 
   margin-bottom: 20px;
-  
-  /* Esto es lo que centra el ícono */
   margin-left: auto;
   margin-right: auto;
-  
   background: var(--surface);
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
@@ -154,6 +150,10 @@ a.card:hover {
   color: white; 
 }
 .card.ig .card-icon-wrap { background: var(--instagram-gradient); color: white; }
+.card.apuntes .card-icon-wrap { 
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%); 
+  color: white; 
+}
 
 .card-title {
   font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;
@@ -165,17 +165,17 @@ a.card:hover {
 /* Badge Minimalista */
 .badge-soon {
   position: absolute; 
-  top: 16px;    /* Un poco más arriba */
-  right: 16px;  /* Un poco más a la derecha */
+  top: 16px;
+  right: 16px;
   background: var(--badge-bg); 
   color: var(--badge-text);
-  padding: 4px 10px; /* Un poco más pequeño para que no invada espacio */
+  padding: 4px 10px;
   border-radius: 100px;
-  font-size: 0.65rem; /* Letra ligeramente más pequeña */
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  z-index: 10; /* Asegura que esté por encima de todo */
+  z-index: 10;
 }
 
 /* Flecha de redirección sutil */
@@ -227,6 +227,14 @@ a.card:hover .card-arrow {
       <div class="card-icon-wrap">📚</div>
       <h2 class="card-title">Malla Interactiva</h2>
       <p class="card-desc">Visualiza prerrequisitos, planifica tus ramos futuros y marca tu progreso visualmente.</p>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- ✏️ REEMPLAZA LA URL AQUÍ con el enlace real de la Central de Apuntes -->
+    <a href="https://uccl0-my.sharepoint.com/:f:/g/personal/c_pregrado_fcb_uc_cl/IgCrO7F9JcwqT6hzsIRMaGpXAQXwcViqA4wEghaTO6CGv74?e=RGu8sa" target="_blank" rel="noopener noreferrer" class="card apuntes">
+      <div class="card-icon-wrap">📝</div>
+      <h2 class="card-title">Central de Apuntes</h2>
+      <p class="card-desc">Accede a la Central de Apuntes CCBB con materiales y recursos de estudio compartidos.</p>
       <div class="card-arrow">↗</div>
     </a>
 
